@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("com.vmlens.interleave") version "1.1.5"
 }
 
 java {
@@ -23,11 +24,9 @@ repositories {
 }
 
 dependencies {
+    testImplementation("com.vmlens:api:1.1.5")
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
-
-    // This dependency is used by the application.
-    implementation("com.google.guava:guava:30.1.1-jre")
 }
 
 application {
@@ -38,4 +37,8 @@ application {
 tasks.test {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+//        events("passed", "skipped", "failed")
+    }
 }
